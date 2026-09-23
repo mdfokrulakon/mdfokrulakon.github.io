@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Fokrul Akon — Data Science &amp; Software Engineering</title>
+<meta name="description" content="Portfolio of Md Fokrul Akon — B.Sc. CSE (Data Science), East West University. Machine learning, data analysis, and web systems projects.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F3EA;
+    --paper-deep:#EDE7D6;
+    --ink:#152238;
+    --ink-soft:#455169;
+    --ink-faint:#7C8598;
+    --gold:#B4813A;
+    --gold-soft:#DDC49A;
+    --line: rgba(21,34,56,0.10);
+    --line-strong: rgba(21,34,56,0.22);
+    --maxw: 920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    font-weight:600;
+    margin:0;
+    color:var(--ink);
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 64px;}
+  @media (max-width:900px){.wrap{padding:0 40px;}}
+  @media (max-width:640px){.wrap{padding:0 28px;}}
+  ::selection{background:var(--gold-soft);}
+
+  /* NAV */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(246,243,234,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:18px 64px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  @media (max-width:900px){.nav-inner{padding:16px 40px;}}
+  @media (max-width:640px){.nav-inner{padding:16px 28px;}}
+  .mark{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:17px;
+    text-decoration:none;
+  }
+  .mark .box{
+    width:28px; height:28px; border:1.5px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; letter-spacing:0.02em; color:var(--gold);
+  }
+  nav.links{display:flex; gap:26px;}
+  nav.links a{
+    text-decoration:none; font-size:14px; color:var(--ink-soft);
+    border-bottom:1px solid transparent; padding-bottom:2px;
+    transition:border-color .15s ease, color .15s ease;
+  }
+  nav.links a:hover{border-color:var(--gold); color:var(--ink);}
+  .nav-toggle{display:none; background:none; border:1px solid var(--line-strong); border-radius:4px; padding:6px 10px; font-size:14px; color:var(--ink); cursor:pointer;}
+  @media (max-width:600px){
+    .nav-toggle{display:block;}
+    nav.links{
+      display:none; position:absolute; top:100%; left:0; right:0;
+      background:var(--paper); border-bottom:1px solid var(--line);
+      flex-direction:column; gap:0; padding:8px 28px 16px;
+    }
+    nav.links.open{display:flex;}
+    nav.links a{padding:10px 0; border-bottom:1px solid var(--line);}
+    .nav-social{border-left:none; padding-left:0; margin-left:0; padding-top:12px; gap:18px;}
+  }
+
+  /* HERO */
+  section.hero{position:relative; overflow:hidden; padding:104px 0 76px;}
+  .hero-chart{
+    position:absolute; top:8%; right:-6%; width:46%; max-width:420px;
+    opacity:0.55; pointer-events:none;
+  }
+  .hero-inner{position:relative; z-index:2; opacity:0; transform:translateY(14px); animation:rise .8s ease forwards .1s;}
+  @keyframes rise{to{opacity:1; transform:translateY(0);}}
+  .eyebrow{
+    color:var(--gold); font-size:14px; letter-spacing:0.01em; margin-bottom:18px;
+    font-family:'IBM Plex Sans'; font-weight:500;
+  }
+  h1.title{font-size:clamp(42px, 6.4vw, 66px); font-weight:700; line-height:1.04; max-width:11ch; letter-spacing:-0.015em;}
+  p.role{font-size:19px; color:var(--ink-soft); margin-top:20px; max-width:46ch; font-weight:500;}
+  p.intro{font-size:16px; color:var(--ink-soft); margin-top:20px; max-width:56ch;}
+  .hero-cta{display:flex; gap:14px; margin-top:32px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 20px; font-size:14.5px; text-decoration:none;
+    border-radius:2px; transition:all .15s ease;
+  }
+  .btn-primary{background:var(--ink); color:var(--paper);}
+  .btn-primary:hover{background:var(--gold);}
+  .btn-ghost{border:1px solid var(--line-strong); color:var(--ink);}
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  /* SECTION SCAFFOLD */
+  section.block{padding:76px 0; border-top:1px solid var(--line);}
+  .sec-head{display:flex; gap:32px; margin-bottom:42px;}
+  .sec-label{
+    flex:0 0 140px; font-size:14px; color:var(--gold); padding-top:5px;
+    font-family:'IBM Plex Sans'; font-weight:600;
+  }
+  .sec-body{flex:1; min-width:0;}
+  h2.sec-title{font-size:30px; font-weight:600; margin-bottom:12px;}
+  .sec-sub{color:var(--ink-soft); font-size:15px; max-width:60ch;}
+
+  @media (max-width:640px){
+    .sec-head{flex-direction:column; gap:6px;}
+    .sec-label{flex:none;}
+  }
+
+  /* ABOUT / EDUCATION */
+  .about-grid{display:grid; grid-template-columns:1fr 1fr; gap:48px;}
+  @media (max-width:640px){.about-grid{grid-template-columns:1fr;}}
+  .fact{display:flex; justify-content:space-between; padding:11px 0; border-bottom:1px solid var(--line); font-size:14.5px; gap:16px;}
+  .fact dt{color:var(--ink-faint);}
+  .fact dd{margin:0; text-align:right; font-weight:500;}
+  .coursework{margin-top:6px; display:flex; flex-wrap:wrap; gap:8px;}
+  .pill{
+    font-size:12.5px; padding:5px 11px; border:1px solid var(--line-strong);
+    border-radius:20px; color:var(--ink-soft); background:transparent;
+  }
+
+  /* EXPERIENCE */
+  .xp-head{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px 20px; margin-bottom:14px;}
+  .xp-role{font-size:21px; font-family:'Fraunces'; font-weight:600;}
+  .xp-meta{font-size:13.5px; color:var(--ink-faint);}
+  ul.bullets{margin:0; padding-left:18px; color:var(--ink-soft); font-size:15px;}
+  ul.bullets li{margin-bottom:7px;}
+
+  .xtra{margin-top:36px; padding-top:28px; border-top:1px solid var(--line);}
+  .xtra-item{display:flex; justify-content:space-between; gap:18px; padding:14px 0; border-bottom:1px solid var(--line); flex-wrap:wrap;}
+  .xtra-item:last-child{border-bottom:none;}
+  .xtra-org{font-size:14px; color:var(--ink-faint); margin-top:3px;}
+  .xtra-role{font-weight:500; font-family:'Fraunces'; font-size:16.5px;}
+  .xtra-date{font-size:13px; color:var(--ink-faint); white-space:nowrap;}
+
+  /* PROJECTS */
+  .filters{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:36px;}
+  .filter-btn{
+    font-family:'IBM Plex Sans'; font-size:13px; padding:7px 14px;
+    border:1px solid var(--line-strong); background:transparent; color:var(--ink-soft);
+    border-radius:20px; cursor:pointer; transition:all .15s ease;
+  }
+  .filter-btn:hover{border-color:var(--ink);}
+  .filter-btn.active{background:var(--ink); color:var(--paper); border-color:var(--ink);}
+  .proj-row{
+    padding:22px 0; border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between; gap:28px; align-items:flex-start;
+  }
+  .proj-row:first-child{border-top:1px solid var(--line);}
+  .proj-left{flex:1; min-width:0;}
+  .proj-title{font-family:'Fraunces'; font-size:18px; font-weight:600; margin-bottom:6px;}
+  .proj-desc{color:var(--ink-soft); font-size:14.5px; max-width:56ch;}
+  .proj-tags{flex:0 0 auto; display:flex; flex-wrap:wrap; gap:6px; max-width:220px; justify-content:flex-end;}
+  .tag{font-size:11.5px; color:var(--ink-faint); border:1px solid var(--line); padding:3px 9px; border-radius:14px; white-space:nowrap;}
+  @media (max-width:640px){
+    .proj-row{flex-direction:column;}
+    .proj-tags{max-width:none; justify-content:flex-start;}
+  }
+
+  /* RESEARCH */
+  .paper{padding:22px 0; border-bottom:1px solid var(--line);}
+  .paper:first-child{border-top:1px solid var(--line);}
+  .paper-title{font-family:'Fraunces'; font-size:18px; font-weight:600; margin-bottom:7px;}
+  .paper-meta{font-size:13.5px; color:var(--ink-faint); margin-bottom:8px;}
+  .paper a.paper-link{font-size:13.5px; color:var(--gold); text-decoration:none; border-bottom:1px solid var(--gold-soft);}
+
+  /* CERT / AWARDS */
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:52px;}
+  @media (max-width:640px){.two-col{grid-template-columns:1fr;}}
+  .list-item{padding:11px 0; border-bottom:1px solid var(--line); font-size:14.5px;}
+  .list-item:last-child{border-bottom:none;}
+  .list-item .li-title{font-weight:500;}
+  .list-item .li-meta{color:var(--ink-faint); font-size:13px; margin-top:2px;}
+
+  /* SKILLS */
+  .skill-group{margin-bottom:30px;}
+  .skill-group:last-child{margin-bottom:0;}
+  .skill-cat{font-size:13px; color:var(--ink-faint); margin-bottom:12px;}
+  .skill-tags{display:flex; flex-wrap:wrap; gap:10px;}
+
+  /* FOOTER / CONTACT */
+  footer{padding:80px 0 56px; border-top:1px solid var(--line);}
+  .contact-title{font-size:33px; font-weight:600; max-width:14ch;}
+  .contact-sub{color:var(--ink-soft); margin-top:14px; max-width:52ch; font-size:15px;}
+  .contact-links{margin-top:30px; display:flex; flex-direction:column; gap:2px; max-width:420px;}
+  .contact-row{
+    display:flex; justify-content:space-between; padding:13px 0;
+    border-bottom:1px solid var(--line); text-decoration:none; color:var(--ink);
+    font-size:14.5px; transition:padding-left .15s ease;
+  }
+  .contact-row:hover{padding-left:6px; color:var(--gold);}
+  .contact-row span.k{color:var(--ink-faint);}
+  .fine{margin-top:48px; font-size:12.5px; color:var(--ink-faint);}
+
+  /* NAV social icons */
+  .nav-social{display:flex; align-items:center; gap:14px; margin-left:24px; padding-left:24px; border-left:1px solid var(--line);}
+  .nav-social a{
+    display:flex; align-items:center; justify-content:center;
+    width:30px; height:30px; color:var(--ink-soft); border-radius:50%;
+    transition:background .15s ease, color .15s ease;
+  }
+  .nav-social a:hover{background:var(--paper-deep); color:var(--ink);}
+  .nav-social svg{width:16px; height:16px;}
+  @media (max-width:760px){.nav-social{display:none;}}
+
+  /* CONTACT (redesigned) */
+  .contact-panel{
+    display:grid; grid-template-columns:1.1fr 1fr; gap:56px; align-items:start;
+  }
+  @media (max-width:720px){.contact-panel{grid-template-columns:1fr;}}
+  .contact-card{
+    border:1px solid var(--line-strong); background:var(--paper-deep);
+    padding:28px; display:flex; flex-direction:column; gap:10px;
+  }
+  .mail-cta{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    background:var(--ink); color:var(--paper); padding:16px 20px;
+    text-decoration:none; margin-bottom:18px; transition:background .15s ease;
+  }
+  .mail-cta:hover{background:var(--gold);}
+  .mail-cta .mc-label{font-size:12.5px; color:var(--gold-soft); margin-bottom:3px;}
+  .mail-cta:hover .mc-label{color:var(--ink);}
+  .mail-cta .mc-value{font-family:'Fraunces'; font-size:17px; font-weight:500;}
+  .mail-cta .mc-arrow{font-size:20px; flex:0 0 auto;}
+  .icon-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .icon-link{
+    display:flex; align-items:center; gap:11px; padding:12px 14px;
+    border:1px solid var(--line-strong); text-decoration:none; color:var(--ink);
+    font-size:13.5px; background:var(--paper); transition:border-color .15s ease, transform .15s ease;
+  }
+  .icon-link:hover{border-color:var(--gold); transform:translateY(-1px);}
+  .icon-link svg{width:17px; height:17px; flex:0 0 auto; color:var(--gold);}
+  .icon-link .il-text{display:flex; flex-direction:column; line-height:1.25;}
+  .icon-link .il-label{font-size:11px; color:var(--ink-faint);}
+  .icon-link .il-value{font-weight:500;}
+  @media (max-width:420px){.icon-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="mark"><span class="box">FA</span> Fokrul Akon</a>
+    <nav class="links">
+      <a href="#work">Work</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+      <span class="nav-social">
+        <a href="https://github.com/mdfokrulakon" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.69 5.4-5.26 5.68.42.36.78 1.08.78 2.18 0 1.57-.01 2.84-.01 3.23 0 .3.21.66.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/mdfokrulakon/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"/></svg>
+        </a>
+        <a href="mailto:mdfokrulakon@gmail.com" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m3 6 9 7 9-7"/></svg>
+        </a>
+      </span>
+    </nav>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.links').classList.toggle('open')">☰</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="top">
+    <svg class="hero-chart" viewBox="0 0 300 220" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <polyline points="4,180 45,150 85,165 125,100 165,120 205,55 245,75 285,20"
+        stroke="#152238" stroke-width="1.4" stroke-linejoin="round" stroke-linecap="round"/>
+      <g fill="#B4813A">
+        <circle cx="4" cy="180" r="3"/><circle cx="45" cy="150" r="3"/><circle cx="85" cy="165" r="3"/>
+        <circle cx="125" cy="100" r="3"/><circle cx="165" cy="120" r="3"/><circle cx="205" cy="55" r="3"/>
+        <circle cx="245" cy="75" r="3"/><circle cx="285" cy="20" r="3.5"/>
+      </g>
+      <line x1="4" y1="200" x2="290" y2="200" stroke="#152238" stroke-width="1" stroke-opacity="0.35"/>
+      <line x1="4" y1="200" x2="4" y2="10" stroke="#152238" stroke-width="1" stroke-opacity="0.35"/>
+    </svg>
+    <div class="wrap hero-inner">
+      <p class="eyebrow">Dhaka, Bangladesh</p>
+      <h1 class="title">Md Fokrul Akon</h1>
+      <p class="role">Data Science &amp; Software Engineering student — B.Sc. in CSE, East West University</p>
+      <p class="intro">Final-semester Computer Science student specializing in data science, with a portfolio of 25+ projects spanning machine learning, deep learning, databases, and web systems, plus two published research contributions. Currently looking for placement, internship, and entry-level roles where analytical rigor meets real business problems.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="mailto:mdfokrulakon@gmail.com">Get in touch</a>
+        <a class="btn btn-ghost" href="https://github.com/mdfokrulakon" target="_blank" rel="noopener">View GitHub</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/mdfokrulakon/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="about">
+    <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Education</div>
+      <div class="sec-body">
+        <h2 class="sec-title">Currently finishing a CSE degree focused on data science</h2>
+        <p class="sec-sub">Twelfth semester at East West University, on track to graduate in December 2026.</p>
+      </div>
+    </div>
+      <div class="about-grid">
+        <dl style="margin:0;">
+          <div class="fact"><dt>University</dt><dd>East West University</dd></div>
+          <div class="fact"><dt>Degree</dt><dd>B.Sc. in CSE — Data Science</dd></div>
+          <div class="fact"><dt>Current CGPA</dt><dd>3.53</dd></div>
+          <div class="fact"><dt>Credits completed</dt><dd>134 / 140</dd></div>
+          <div class="fact"><dt>Expected graduation</dt><dd>December 2026</dd></div>
+          <div class="fact"><dt>HSC — Khilgaon Govt. High School</dt><dd>2021 · GPA 4.83/5</dd></div>
+          <div class="fact"><dt>SSC — Khilgaon Govt. High School</dt><dd>2019 · GPA 4.44/5</dd></div>
+        </dl>
+        <div>
+          <p style="font-size:13px; color:var(--ink-faint); margin-bottom:10px;">Relevant coursework</p>
+          <div class="coursework">
+            <span class="pill">Database Systems</span>
+            <span class="pill">Statistics for Data Science</span>
+            <span class="pill">Artificial Intelligence</span>
+            <span class="pill">Machine Learning</span>
+            <span class="pill">Big Data Analytics</span>
+            <span class="pill">Software Engineering</span>
+          </div>
+          <p style="font-size:13px; color:var(--ink-faint); margin:22px 0 10px;">Languages</p>
+          <div class="coursework">
+            <span class="pill">Bangla — Advanced</span>
+            <span class="pill">English — Advanced</span>
+            <span class="pill">Hindi — Advanced</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="work">
+    <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Experience</div>
+      <div class="sec-body">
+        <h2 class="sec-title">Work experience</h2>
+      </div>
+    </div>
+    <div class="xp-head">
+      <div>
+        <div class="xp-role">IT &amp; Social Media Manager</div>
+        <div class="xp-meta">Swadesh Pratidin · Gulshan Circle-2, Dhaka</div>
+      </div>
+      <div class="xp-meta">June 2025 – December 2025</div>
+    </div>
+    <ul class="bullets">
+      <li>Managed official email accounts and correspondence for the organization.</li>
+      <li>Supported staff across the office by installing and troubleshooting software and applications on company computers.</li>
+      <li>Tagged and optimized social media posts to improve reach, and tracked trending topics to inform content strategy.</li>
+      <li>Reviewed video content for compliance with YouTube's community and monetization guidelines before publishing.</li>
+    </ul>
+
+    <div class="xtra">
+      <p style="font-size:13px; color:var(--ink-faint); margin-bottom:4px;">Leadership &amp; extracurricular</p>
+      <div class="xtra-item">
+        <div>
+          <div class="xtra-role">Event Coordinator</div>
+          <div class="xtra-org">IEEE Computer Society Student Branch Chapter, East West University</div>
+        </div>
+        <div class="xtra-date">Jan 2026 – Present · Hybrid</div>
+      </div>
+      <div class="xtra-item">
+        <div>
+          <div class="xtra-role">Newsletter Editor</div>
+          <div class="xtra-org">IEEE East West University Student Branch</div>
+        </div>
+        <div class="xtra-date">Jan 2026 – Present</div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="block" id="projects">
+    <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Selected work</div>
+      <div class="sec-body">
+        <h2 class="sec-title">Projects</h2>
+        <p class="sec-sub">A selection from 43 repositories on GitHub, spanning machine learning, deep learning, databases, and systems — filter by area below, or <a href="https://github.com/mdfokrulakon?tab=repositories" target="_blank" rel="noopener" style="color:var(--gold); border-bottom:1px solid var(--gold-soft); text-decoration:none;">browse everything on GitHub</a>.</p>
+      </div>
+    </div>
+
+    <div class="filters" id="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="web">Web &amp; Database Systems</button>
+      <button class="filter-btn" data-filter="ml">Machine Learning &amp; Data Science</button>
+      <button class="filter-btn" data-filter="dl">Deep Learning &amp; Computer Vision</button>
+      <button class="filter-btn" data-filter="sys">Systems, Networking &amp; Logic</button>
+    </div>
+
+    <div id="proj-list">
+      <!-- Web & Database Systems -->
+      <div class="proj-row" data-cat="web">
+        <div class="proj-left"><div class="proj-title">Promee International — ISP Management System</div>
+        <div class="proj-desc">Web-based system for centralized management of ISP operations, with frontend interfaces and database-driven backend features.</div></div>
+        <div class="proj-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">SQL</span></div>
+      </div>
+      <div class="proj-row" data-cat="web">
+        <div class="proj-left"><div class="proj-title">Smart ISP Business Operations Management System</div>
+        <div class="proj-desc">Centralized web platform for managing ISP business operations, with database-driven functionality for organizing operational data.</div></div>
+        <div class="proj-tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">SQL</span></div>
+      </div>
+      <div class="proj-row" data-cat="web">
+        <div class="proj-left"><div class="proj-title">Online Platforms for Digital Education</div>
+        <div class="proj-desc">Web-based platform supporting digital education and online learning activities, with database-driven functionality and user-facing interfaces.</div></div>
+        <div class="proj-tags"><span class="tag">PHP</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">MySQL</span></div>
+      </div>
+      <div class="proj-row" data-cat="web">
+        <div class="proj-left"><div class="proj-title">Online Bookstore Database</div>
+        <div class="proj-desc">Relational database system for managing an online bookstore — books, customers, orders, and related records.</div></div>
+        <div class="proj-tags"><span class="tag">SQL</span><span class="tag">Database Design</span></div>
+      </div>
+      <div class="proj-row" data-cat="web">
+        <div class="proj-left"><div class="proj-title">Canteen Management System</div>
+        <div class="proj-desc">Management system handling canteen operations — products, transactions, and operational data.</div></div>
+        <div class="proj-tags"><span class="tag">Database</span><span class="tag">Software Development</span></div>
+      </div>
+      <div class="proj-row" data-cat="web">
+        <div class="proj-left"><div class="proj-title">Chrome Extension Laptop Scraper</div>
+        <div class="proj-desc">Browser extension that collects and organizes laptop product information from web pages using browser-based automation.</div></div>
+        <div class="proj-tags"><span class="tag">JavaScript</span><span class="tag">Chrome Extension</span><span class="tag">Web Scraping</span></div>
+      </div>
+      <div class="proj-row" data-cat="web">
+        <div class="proj-left"><div class="proj-title">Railway Management System</div>
+        <div class="proj-desc">Management system for handling railway operations — scheduling, bookings, and route records.</div></div>
+        <div class="proj-tags"><span class="tag">Database</span><a class="tag" href="https://github.com/mdfokrulakon/Railway-Management-System" target="_blank" rel="noopener" style="text-decoration:none;">GitHub ↗</a></div>
+      </div>
+      <div class="proj-row" data-cat="web">
+        <div class="proj-left"><div class="proj-title">Restaurant Management System</div>
+        <div class="proj-desc">System for managing restaurant operations, including orders, inventory, and records.</div></div>
+        <div class="proj-tags"><span class="tag">Database</span><a class="tag" href="https://github.com/mdfokrulakon/Restaurant-Management-System" target="_blank" rel="noopener" style="text-decoration:none;">GitHub ↗</a></div>
+      </div>
+
+      <!-- Machine Learning & Data Science -->
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">FAISS Algorithms Streamlit Dashboard</div>
+        <div class="proj-desc">Interactive dashboard for exploring FAISS-based similarity search algorithms, combining data processing, search, and visualization.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">FAISS</span><span class="tag">Streamlit</span></div>
+      </div>
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">Market Basket Analysis Dashboard</div>
+        <div class="proj-desc">Association-rule analysis to identify product relationships and purchasing patterns, presented through an interactive dashboard.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Streamlit</span></div>
+      </div>
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">Customer Churn Hybrid AI</div>
+        <div class="proj-desc">Hybrid AI system for predicting customer churn, combining preprocessing, model training, and evaluation to flag at-risk customers.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Machine Learning</span></div>
+      </div>
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">Customer Purchase Prediction System</div>
+        <div class="proj-desc">Predictive model for customer purchasing behavior built on feature analysis and evaluated model training.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Machine Learning</span></div>
+      </div>
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">Telco Churn Analysis</div>
+        <div class="proj-desc">Analysis of telecom customer data to identify the factors most associated with churn, using exploratory analysis and ML models.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Data Analysis</span><span class="tag">Machine Learning</span></div>
+      </div>
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">Cinema Ticket Sales ML Analysis</div>
+        <div class="proj-desc">Applied machine learning and data analysis to historical cinema ticket sales data to surface purchasing patterns.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Data Analysis</span></div>
+      </div>
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">SVM vs Decision Tree Classification</div>
+        <div class="proj-desc">Comparative study of Support Vector Machine and Decision Tree classifiers, evaluated on standard classification metrics.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span></div>
+      </div>
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">Plant Disease Classification using SVM</div>
+        <div class="proj-desc">SVM-based model for classifying plant disease from image data, covering preprocessing through performance evaluation.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">SVM</span></div>
+      </div>
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">Fashion MNIST Classification</div>
+        <div class="proj-desc">Image classification model trained on the Fashion MNIST dataset, from preprocessing through evaluation.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Machine Learning</span></div>
+      </div>
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">Diabetes ML Analysis</div>
+        <div class="proj-desc">Predictive modeling on diabetes-related health data, including preprocessing and exploratory analysis.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Machine Learning</span></div>
+      </div>
+      <div class="proj-row" data-cat="ml">
+        <div class="proj-left"><div class="proj-title">Islamic Marriage Compatibility</div>
+        <div class="proj-desc">Application that evaluates marriage compatibility based on user-provided criteria, with custom data processing logic.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span></div>
+      </div>
+
+      <!-- Deep Learning & CV -->
+      <div class="proj-row" data-cat="dl">
+        <div class="proj-left"><div class="proj-title">BUSI Breast Ultrasound Segmentation</div>
+        <div class="proj-desc">Deep learning models for breast ultrasound lesion segmentation, compared across architectures using IoU, Dice score, and pixel-level metrics.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Deep Learning</span><span class="tag">Computer Vision</span></div>
+      </div>
+      <div class="proj-row" data-cat="dl">
+        <div class="proj-left"><div class="proj-title">Breast Cancer Classification System</div>
+        <div class="proj-desc">ML/DL-based classification system applying image preprocessing, model training, and performance evaluation.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Machine Learning</span><span class="tag">Deep Learning</span></div>
+      </div>
+
+      <!-- Systems, Networking & Logic -->
+      <div class="proj-row" data-cat="sys">
+        <div class="proj-left"><div class="proj-title">Algorithm Implementation for Travel Route Optimization</div>
+        <div class="proj-desc">Graph and optimization algorithms applied to solve route-planning problems.</div></div>
+        <div class="proj-tags"><span class="tag">C++</span><a class="tag" href="https://github.com/mdfokrulakon/-Algorithm-Implementation-for-Travel-Route-Optimization" target="_blank" rel="noopener" style="text-decoration:none;">GitHub ↗</a></div>
+      </div>
+      <div class="proj-row" data-cat="sys">
+        <div class="proj-left"><div class="proj-title">Journey Economizer</div>
+        <div class="proj-desc">Route and cost optimization tool built around core algorithmic problem-solving.</div></div>
+        <div class="proj-tags"><span class="tag">C++</span><a class="tag" href="https://github.com/mdfokrulakon/Journey-Economizer" target="_blank" rel="noopener" style="text-decoration:none;">GitHub ↗</a></div>
+      </div>
+      <div class="proj-row" data-cat="sys">
+        <div class="proj-left"><div class="proj-title">Smart Vending Machine</div>
+        <div class="proj-desc">Simulated vending machine logic covering inventory, transactions, and state handling.</div></div>
+        <div class="proj-tags"><span class="tag">C++</span><a class="tag" href="https://github.com/mdfokrulakon/Smart_Vending_Machine" target="_blank" rel="noopener" style="text-decoration:none;">GitHub ↗</a></div>
+      </div>
+      <div class="proj-row" data-cat="sys">
+        <div class="proj-left"><div class="proj-title">Operating Systems: Iced Tea &amp; Coffee Problem</div>
+        <div class="proj-desc">Classic OS concurrency problem implemented to explore process synchronization and resource-sharing constraints.</div></div>
+        <div class="proj-tags"><span class="tag">C</span><a class="tag" href="https://github.com/mdfokrulakon/Operating-Systems-Iced-tea-Coffee-Problem" target="_blank" rel="noopener" style="text-decoration:none;">GitHub ↗</a></div>
+      </div>
+      <div class="proj-row" data-cat="sys">
+        <div class="proj-left"><div class="proj-title">Simulate Traffic Control System with Adaptive Control</div>
+        <div class="proj-desc">Traffic simulation with adaptive control logic for vehicles and pedestrians, managing flow at intersections.</div></div>
+        <div class="proj-tags"><span class="tag">Python</span><span class="tag">Simulation</span></div>
+      </div>
+      <div class="proj-row" data-cat="sys">
+        <div class="proj-left"><div class="proj-title">Multi-Campus University Network Using OSPF</div>
+        <div class="proj-desc">Design and configuration of a multi-campus network using the OSPF routing protocol for efficient inter-campus connectivity.</div></div>
+        <div class="proj-tags"><span class="tag">Networking</span><span class="tag">OSPF</span></div>
+      </div>
+      <div class="proj-row" data-cat="sys">
+        <div class="proj-left"><div class="proj-title">CPU Scheduling Simulator</div>
+        <div class="proj-desc">Simulator implementing operating-system CPU scheduling algorithms and analyzing process execution.</div></div>
+        <div class="proj-tags"><span class="tag">C</span><span class="tag">Operating Systems</span></div>
+      </div>
+      <div class="proj-row" data-cat="sys">
+        <div class="proj-left"><div class="proj-title">BCD-to-7-Segment Display Decoder</div>
+        <div class="proj-desc">Digital logic design converting BCD inputs into corresponding seven-segment display outputs.</div></div>
+        <div class="proj-tags"><span class="tag">Digital Logic</span></div>
+      </div>
+      <div class="proj-row" data-cat="sys">
+        <div class="proj-left"><div class="proj-title">Majority Gate — 3 Input</div>
+        <div class="proj-desc">Three-input majority logic gate designed using Boolean algebra and digital logic principles.</div></div>
+        <div class="proj-tags"><span class="tag">Digital Logic</span></div>
+      </div>
+      <div class="proj-row" data-cat="sys">
+        <div class="proj-left"><div class="proj-title">3-Input Majority Detector</div>
+        <div class="proj-desc">Detection circuit built from Boolean logic to determine the majority state across three inputs.</div></div>
+        <div class="proj-tags"><span class="tag">Digital Logic</span></div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section class="block" id="research">
+    <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Publications</div>
+      <div class="sec-body">
+        <h2 class="sec-title">Research &amp; publications</h2>
+      </div>
+    </div>
+
+    <div class="paper">
+      <div class="paper-title">A hybrid quantum-classical approach for fruit classification and calorie prediction using machine learning</div>
+      <div class="paper-meta">Quantum Shield for AI Security: Secure Systems, Quantum Blockchain, Adversarial Attacks and Defenses in AI · 2026 · Published</div>
+      <a class="paper-link" href="https://books.google.com.bd/books?hl=en&lr=&id=poqYEQAAQBAJ&oi=fnd&pg=PA273&dq=info:2t-VeQiK1n8J:scholar.google.com&ots=0v2gCSQ7jr&sig=zBav9lNlmn7FzmkGUQaxceHGUyU&redir_esc=y#v=onepage&q&f=false" target="_blank" rel="noopener">Read chapter →</a>
+    </div>
+    <div class="paper">
+      <div class="paper-title">Smartphone image dataset for machine learning-based monitoring and analysis of mango growth stages</div>
+      <div class="paper-meta">Data in Brief · 2025 · Published</div>
+      <a class="paper-link" href="https://www.sciencedirect.com/science/article/pii/S2352340925005074" target="_blank" rel="noopener">Read article →</a>
+    </div>
+    <div class="paper">
+      <div class="paper-title">Optimizing Information (Ch. 15)</div>
+      <div class="paper-meta">Artificial Intelligence and Optimization Techniques for Smart Information System Generations · 2025 · Published</div>
+      <a class="paper-link" href="https://books.google.com.bd/books?hl=en&lr=&id=TC9JEQAAQBAJ&oi=fnd&pg=PA278&dq=info:TnT6KxsOnlYJ:scholar.google.com&ots=-4zXOgexST&sig=hh3olgYGPgX9YjSWCr5AKSEnLvE&redir_esc=y#v=onepage&q&f=false" target="_blank" rel="noopener">Read chapter →</a>
+    </div>
+
+    <p style="margin-top:22px;"><a class="paper-link" href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=-fhb-xkAAAAJ" target="_blank" rel="noopener">Full profile on Google Scholar →</a></p>
+    </div>
+  </section>
+
+  <section class="block" id="skills">
+    <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Toolbox</div>
+      <div class="sec-body">
+        <h2 class="sec-title">Skills, certifications &amp; awards</h2>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-cat">Programming languages</div>
+      <div class="skill-tags">
+        <span class="pill">C</span><span class="pill">C++</span><span class="pill">Python</span>
+        <span class="pill">Java</span><span class="pill">JavaScript</span><span class="pill">PHP</span>
+        <span class="pill">HTML</span><span class="pill">CSS</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-cat">Databases</div>
+      <div class="skill-tags"><span class="pill">SQL</span><span class="pill">MySQL</span></div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-cat">Data &amp; ML tooling</div>
+      <div class="skill-tags">
+        <span class="pill">Scikit-learn</span><span class="pill">Streamlit</span><span class="pill">FAISS</span>
+        <span class="pill">Power BI</span>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:40px;">
+      <div>
+        <p style="font-size:13px; color:var(--ink-faint); margin-bottom:6px;">Certifications &amp; training</p>
+        <div class="list-item"><div class="li-title">Business Analytics with Power BI</div><div class="li-meta">Unbolt Academy · 2025</div></div>
+        <div class="list-item"><div class="li-title">SQL (Intermediate)</div><div class="li-meta">HackerRank · 2025</div></div>
+        <div class="list-item"><div class="li-title">Python (Basic)</div><div class="li-meta">HackerRank · 2025</div></div>
+        <div class="list-item"><div class="li-title">Agile Project Management</div><div class="li-meta">HP LIFE · 2025</div></div>
+        <div class="list-item"><div class="li-title">Basics of Business Communication</div><div class="li-meta">UniAthena · 2025</div></div>
+      </div>
+      <div>
+        <p style="font-size:13px; color:var(--ink-faint); margin-bottom:6px;">Awards &amp; achievements</p>
+        <div class="list-item"><div class="li-title">Medha Lalon Scholarship</div><div class="li-meta">East West University · 2026 — awarded for academic performance</div></div>
+        <div class="list-item"><div class="li-title">Newsletter Editor</div><div class="li-meta">IEEE East West University Student Branch · 2025</div></div>
+        <div class="list-item"><div class="li-title">Event Coordinator</div><div class="li-meta">IEEE Computer Society Student Branch · 2026</div></div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-label">Get in touch</div>
+      <div class="sec-body">
+        <h2 class="contact-title">Open to data science, software engineering, and analytics roles.</h2>
+        <p class="contact-sub">The fastest way to reach me is email.</p>
+
+        <div class="contact-panel" style="margin-top:34px;">
+          <div class="contact-card">
+            <a class="mail-cta" href="mailto:mdfokrulakon@gmail.com">
+              <span>
+                <span class="mc-label">Email</span>
+                <span class="mc-value">mdfokrulakon@gmail.com</span>
+              </span>
+              <span class="mc-arrow">→</span>
+            </a>
+            <div class="icon-grid">
+              <a class="icon-link" href="tel:+8801600344311">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1 .36 1.98.68 2.92a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.16-1.25a2 2 0 0 1 2.11-.45c.94.32 1.92.55 2.92.68A2 2 0 0 1 22 16.92Z"/></svg>
+                <span class="il-text"><span class="il-label">Phone</span><span class="il-value">+880 1600 344311</span></span>
+              </a>
+              <a class="icon-link" href="https://www.linkedin.com/in/mdfokrulakon/" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.03-1.85-3.03-1.86 0-2.14 1.45-2.14 2.94v5.66H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.8 0 0 .78 0 1.75v20.5C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.75V1.75C24 .78 23.2 0 22.22 0Z"/></svg>
+                <span class="il-text"><span class="il-label">LinkedIn</span><span class="il-value">/in/mdfokrulakon</span></span>
+              </a>
+              <a class="icon-link" href="https://github.com/mdfokrulakon" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12c0 5.09 3.29 9.4 7.86 10.93.57.1.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.56-.29-5.25-1.28-5.25-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.18 1.83 1.18 3.09 0 4.42-2.69 5.4-5.26 5.68.42.36.78 1.08.78 2.18 0 1.57-.01 2.84-.01 3.23 0 .3.21.66.8.55A10.52 10.52 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5Z"/></svg>
+                <span class="il-text"><span class="il-label">GitHub</span><span class="il-value">/mdfokrulakon</span></span>
+              </a>
+              <a class="icon-link" href="https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=-fhb-xkAAAAJ" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 24a7 7 0 1 1 0-14 7 7 0 0 1 0 14Zm0-24L0 9.5l4.36 3.4V17l7.64-4.5 7.64 4.5v-4.1L24 9.5 12 0Z"/></svg>
+                <span class="il-text"><span class="il-label">Google Scholar</span><span class="il-value">View publications</span></span>
+              </a>
+            </div>
+          </div>
+
+          <div>
+            <p style="font-size:13px; color:var(--ink-faint); margin-bottom:12px;">At a glance</p>
+            <div class="fact"><dt>Based in</dt><dd>Dhaka, Bangladesh</dd></div>
+            <div class="fact"><dt>Graduating</dt><dd>December 2026</dd></div>
+            <div class="fact"><dt>Focus areas</dt><dd>Data Science, ML, Web Systems</dd></div>
+            <div class="fact"><dt>Published papers</dt><dd>2</dd></div>
+            <div class="fact"><dt>GitHub repositories</dt><dd>43</dd></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="fine">© 2026 Md Fokrul Akon. Built for GitHub Pages.</p>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  // Project category filter
+  const buttons = document.querySelectorAll('.filter-btn');
+  const rows = document.querySelectorAll('.proj-row');
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const f = btn.dataset.filter;
+      rows.forEach(row => {
+        row.style.display = (f === 'all' || row.dataset.cat === f) ? '' : 'none';
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
